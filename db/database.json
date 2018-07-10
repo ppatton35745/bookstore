@@ -1,9 +1,24 @@
 {
-  "Table1": [
+  "users": [
     {
-      "Field1": "Value1",
-      "Field2": "Value2",
-      "Field3": "Value3"
+      "id": 1,
+      "name": "Phil"
+    }
+  ],
+  "books": [
+    {
+      "userId": "1",
+      "title": "Lord of the Rings",
+      "summary": "A sweet book about Elves",
+      "pages": "10456",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "title": "Lord of the Pies",
+      "summary": "Now the kids don't kill each otehr",
+      "pages": "550",
+      "id": 2
     }
   ]
 }
