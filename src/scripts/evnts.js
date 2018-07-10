@@ -1,6 +1,6 @@
 const $ = require("jquery");
-const Books = require("./books");
-const Dom = require("./dom");
+// const Books = require("./books");
+// const Dom = require("./dom");
 
 const currentUserId = sessionStorage.getItem("currentUserId");
 
@@ -14,7 +14,9 @@ const evnts = {
         $("#cancelNewButton").show();
     },
     saveNewBook: function () {
-        Books.create(currentUserId, $("#newTitleInput").val(), $("#newSummaryInput").val(), $("#newPagesInput").val()).then(Books.read(currentUserId));
+        const Books = require("./books");
+        console.log(Books);
+        Books.create(currentUserId, $("#newTitleInput").val(), $("#newSummaryInput").val(), $("#newPagesInput").val());
     },
     cancelNewBook: function () {
         $("#addNewBookButton").show();
@@ -25,12 +27,13 @@ const evnts = {
         $("#cancelNewButton").hide();
     },
     markAsRead: function (card) {
+        const Books = require("./books");
         const bookId = card.attr("bookId");
         const title = card.children(".title").text();
         const summary = card.children(".summary").text();
         const pages = card.children(".pages").text();
 
-        Books.update(bookId, currentUserId, title, summary, pages, "true").then(Books.read(currentUserId));
+        Books.update(bookId, currentUserId, title, summary, pages, "true");
     },
     editBook: function (card) {
         const title = card.children(".title");
@@ -56,12 +59,13 @@ const evnts = {
 
     },
     saveBookEdits: function (card) {
+        const Books = require("./books");
         const bookId = card.attr("bookId");
         const title = card.children(".titleEdit").val();
         const summary = card.children(".summaryEdit").val();
         const pages = card.children(".pagesEdit").val();
 
-        Books.update(bookId, currentUserId, title, summary, pages, "false").then(Books.read(currentUserId));
+        Books.update(bookId, currentUserId, title, summary, pages, "false");
     },
     cancelBookEdits: function (card) {
 
@@ -87,6 +91,7 @@ const evnts = {
         card.children(".cancelEditButton").hide();
     },
     deleteBook: function (card) {
+        const Books = require("./books");
         const bookId = card.attr("bookId");
         Books.delete(bookId);
     }

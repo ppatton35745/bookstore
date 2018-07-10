@@ -63,6 +63,7 @@ const buildFooter = () => {
 
 const dom = {
     buildDom: (booksArr) => {
+        $("#target-container").empty();
         const header = buildHeader();
         const body = buildBody(booksArr);
         const footer = buildFooter();

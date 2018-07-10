@@ -2,26 +2,35 @@ const api = require("./api");
 const BooksApi = api.books;
 const Dom = require("./dom");
 
+const currentUserId = sessionStorage.getItem("currentUserId");
 
 const books = {
     // READ
-    read: function (userId) {
-        BooksApi.read(userId).then(bookrArr => {Dom.buildDom(booksArr)});
+    read: (userId) => {
+        BooksApi.read(userId).then(booksArr => {
+            Dom.buildDom(booksArr)
+        });
     },
 
     // CREATE
-    create: function (userId, title, summary, pages) {
-        return BooksApi.create(userId, title, summary, pages);
+    create: (userId, title, summary, pages) => {
+        BooksApi.create(userId, title, summary, pages).then(() => {
+            books.read(currentUserId);
+        });
     },
 
     // UPDATE
-    update: function (bookId, userId, title, summary, pages, read) {
-        return BooksApi.update(bookId, userId, title, summary, pages, read);
+    update: (bookId, userId, title, summary, pages, read) => {
+        BooksApi.update(bookId, userId, title, summary, pages, read).then(() => {
+            books.read(currentUserId);
+        });
     },
 
     // DELETE
-    delete: function (bookId) {
-        return BooksApi.delete(bookId);
+    delete: (bookId) => {
+        BooksApi.delete(bookId).then(() => {
+            books.read(currentUserId);
+        });
     }
 }
 
