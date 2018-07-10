@@ -14,11 +14,7 @@ const evnts = {
         $("#cancelNewButton").show();
     },
     saveNewBook: function () {
-        Books.create(currentUserId, $("#newTitleInput").val(), $("#newSummaryInput").val(), $("#newPagesInput").val()).then(
-            Books.read(currentUserId).then(
-                booksArr => {
-                    Dom.buildDom(booksArr);
-                }))
+        Books.create(currentUserId, $("#newTitleInput").val(), $("#newSummaryInput").val(), $("#newPagesInput").val()).then(Books.read(currentUserId));
     },
     cancelNewBook: function () {
         $("#addNewBookButton").show();
@@ -29,19 +25,14 @@ const evnts = {
         $("#cancelNewButton").hide();
     },
     markAsRead: function (card) {
-        const bookId = card["bookId"];
+        const bookId = card.attr("bookId");
         const title = card.children(".title").text();
         const summary = card.children(".summary").text();
         const pages = card.children(".pages").text();
 
-        Books.update(bookId, currentUserId, title, summary, pages, "true").then(
-            Books.read(currentUserId).then(
-                booksArr => {
-                    Dom.buildDom(booksArr);
-                }))
+        Books.update(bookId, currentUserId, title, summary, pages, "true").then(Books.read(currentUserId));
     },
     editBook: function (card) {
-
         const title = card.children(".title");
         const summary = card.children(".summary");
         const pages = card.children(".pages");
@@ -65,16 +56,12 @@ const evnts = {
 
     },
     saveBookEdits: function (card) {
-        const bookId = card["bookId"];
+        const bookId = card.attr("bookId");
         const title = card.children(".titleEdit").val();
         const summary = card.children(".summaryEdit").val();
         const pages = card.children(".pagesEdit").val();
 
-        Books.update(bookId, currentUserId, title, summary, pages, "false").then(
-            Books.read(currentUserId).then(
-                booksArr => {
-                    Dom.buildDom(booksArr);
-                }))
+        Books.update(bookId, currentUserId, title, summary, pages, "false").then(Books.read(currentUserId));
     },
     cancelBookEdits: function (card) {
 
@@ -100,7 +87,7 @@ const evnts = {
         card.children(".cancelEditButton").hide();
     },
     deleteBook: function (card) {
-        const bookId = card["bookId"];
+        const bookId = card.attr("bookId");
         Books.delete(bookId);
     }
 }

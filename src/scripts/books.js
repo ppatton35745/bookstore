@@ -1,11 +1,12 @@
 const api = require("./api");
 const BooksApi = api.books;
+const Dom = require("./dom");
 
 
 const books = {
     // READ
     read: function (userId) {
-        return BooksApi.read(userId);
+        BooksApi.read(userId).then(bookrArr => {Dom.buildDom(booksArr)});
     },
 
     // CREATE
@@ -14,8 +15,8 @@ const books = {
     },
 
     // UPDATE
-    update: function (bookId, userId, title, summary, pages) {
-        return BooksApi.update(bookId, userId, title, summary, pages);
+    update: function (bookId, userId, title, summary, pages, read) {
+        return BooksApi.update(bookId, userId, title, summary, pages, read);
     },
 
     // DELETE

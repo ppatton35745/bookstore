@@ -7,8 +7,4 @@ const Evnts = require("./evnts");
 sessionStorage.setItem("currentUserId", 1);
 currentUserId = sessionStorage.getItem("currentUserId");
 
-Books.read(currentUserId).then(
-    booksArr => {
-        console.log(booksArr);
-        Dom.buildDom(booksArr);
-    });
+Books.read(currentUserId);

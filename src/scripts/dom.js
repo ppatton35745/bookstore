@@ -9,19 +9,19 @@ const buildBookCard = (book) => {
     const summaryEdit = $("<input>").addClass("summaryEdit").hide();
     const pages = $("<p>").text(book["pages"]).addClass("pages");
     const pagesEdit = $("<input>").addClass("pagesEdit").hide();
-    const markAsReadBox = $("<input>").attr("type", "checkbox").addClass("markAsReadBox").on("click", (card) => {
+    const markAsReadBox = $("<input>").attr({"type":"checkbox","checked":false}).addClass("markAsReadBox").on("click", (e) => {
         Evnts.markAsRead(card)
     });
-    const editButton = $("<button>").text("Edit").addClass("editButton").on("click", (card) => {
+    const editButton = $("<button>").text("Edit").addClass("editButton").on("click", (e) => {
         Evnts.editBook(card)
     });
-    const deleteButton = $("<button>").text("Delete").addClass("deleteButton").on("click", (card) => {
+    const deleteButton = $("<button>").text("Delete").addClass("deleteButton").on("click", (e) => {
         Evnts.deleteBook(card)
     });
-    const saveButton = $("<button>").text("Save").addClass("saveEditButton").on("click", (card) => {
+    const saveButton = $("<button>").text("Save").addClass("saveEditButton").on("click", (e) => {
         Evnts.saveBookEdits(card)
     }).hide();
-    const cancelButton = $("<button>").text("Cancel").addClass("cancelEditButton").on("click", (card) => {
+    const cancelButton = $("<button>").text("Cancel").addClass("cancelEditButton").on("click", (e) => {
         Evnts.cancelBookEdits(card)
     }).hide();
 
@@ -32,16 +32,16 @@ const buildBookCard = (book) => {
 const buildHeader = () => {
     const header = $("<div>").attr("id", "headerDiv");
     const headerTitle = $("<h1>").text("BookCollection");
-    const addNewBookButton = $("<button>").text("New Book").attr("id", "addNewBookButton").on("click", () => {
+    const addNewBookButton = $("<button>").text("New Book").attr("id", "addNewBookButton").on("click", (e) => {
         Evnts.addNewBook()
     });
     const newTitle = $("<input>").attr("id", "newTitleInput").hide();
     const newSummary = $("<input>").attr("id", "newSummaryInput").hide();
     const newPages = $("<input>").attr("id", "newPagesInput").hide();
-    const saveNewBook = $("<button>").text("Save").attr("id", "saveNewButton").on("click", () => {
+    const saveNewBook = $("<button>").text("Save").attr("id", "saveNewButton").on("click", (e) => {
         Evnts.saveNewBook()
     }).hide();
-    const cancelNewBook = $("<button>").text("Save").attr("id", "cancelNewButton").on("click", () => {
+    const cancelNewBook = $("<button>").text("Cancel").attr("id", "cancelNewButton").on("click", (e) => {
         Evnts.cancelNewBook()
     }).hide();
     return header.append(headerTitle).append(addNewBookButton).append(newTitle).append(newSummary).append(newPages).append(saveNewBook).append(cancelNewBook);
