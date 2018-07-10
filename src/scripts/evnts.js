@@ -1,3 +1,4 @@
+const $ = require("jquery");
 const Books = require("./books");
 const Dom = require("./dom");
 
@@ -13,7 +14,7 @@ const evnts = {
         $("#cancelNewButton").show();
     },
     saveNewBook: function () {
-        Books.create(currentUserId,$("#newTitleInput").val(),$("#newSummaryInput").val(),$("#newPagesInput").val()).then(
+        Books.create(currentUserId, $("#newTitleInput").val(), $("#newSummaryInput").val(), $("#newPagesInput").val()).then(
             Books.read(currentUserId).then(
                 booksArr => {
                     Dom.buildDom(booksArr);

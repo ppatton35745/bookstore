@@ -9,5 +9,6 @@ currentUserId = sessionStorage.getItem("currentUserId");
 
 Books.read(currentUserId).then(
     booksArr => {
+        console.log(booksArr);
         Dom.buildDom(booksArr);
     });
