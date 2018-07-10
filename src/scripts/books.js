@@ -1,12 +1,11 @@
 const api = require("./api");
-const Dom = require("./dom");
 const BooksApi = api.books;
 
 
 const books = {
     // READ
-    read: function () {
-        return BooksApi.read();
+    read: function (userId) {
+        return BooksApi.read(userId);
     },
 
     // CREATE

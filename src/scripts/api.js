@@ -2,8 +2,8 @@ const $ = require("jquery");
 const api = {
     books: {
         // READ
-        read: function () {
-            return $.ajax("http://localhost:3000/books?_expand=user");
+        read: function (userId) {
+            return $.ajax(`http://localhost:3000/books?_expand=user&userId=${userId}&read=false`);
         },
         // CREATE
         create: function (userId, title, summary, pages) {
@@ -14,13 +14,14 @@ const api = {
                     "userId": userId,
                     "title": title,
                     "summary": summary,
-                    "pages": pages
+                    "pages": pages,
+                    "read": "false"
                 }
             })
         },
 
         // UPDATE
-        update: function (bookId, userId, title, summary, pages) {
+        update: function (bookId, userId, title, summary, pages, read) {
 
             return $.ajax({
                 url: `http://localhost:3000/books/${bookId}`,
@@ -29,7 +30,8 @@ const api = {
                     "userId": userId,
                     "title": title,
                     "summary": summary,
-                    "pages": pages
+                    "pages": pages,
+                    "read": read
                 }
             })
         },

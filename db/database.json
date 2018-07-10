@@ -11,14 +11,16 @@
       "title": "Lord of the Rings",
       "summary": "A sweet book about Elves",
       "pages": "10456",
-      "id": 1
+      "id": 1,
+      "read": "false"
     },
     {
       "userId": "1",
       "title": "Lord of the Pies",
       "summary": "Now the kids don't kill each otehr",
       "pages": "550",
-      "id": 2
+      "id": 2,
+      "read": "false"
     }
   ]
 }
