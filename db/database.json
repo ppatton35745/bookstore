@@ -2,7 +2,8 @@
   "users": [
     {
       "id": 1,
-      "name": "Phil"
+      "name": "Phil",
+      "password": "password"
     }
   ],
   "books": [
